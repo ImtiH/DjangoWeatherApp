@@ -23,14 +23,14 @@ def CityWeatherView(request):
                 if r['cod'] == 200:
                     form.save()
                 else:
-                    errmsg = "The city is not in the world"
+                    errmsg = "The city doesn't exist in the world"
             else:
-                errmsg = "Already city is added to database"
+                errmsg = "This city is aready in the list."
         if errmsg:
             msg = errmsg
             msgclass = 'is-danger'
         else:
-            msg = "The city is successfully added in database"
+            msg = "The city is successfully added to the list"
             msgclass = 'is-success'
 
     form = CityForm()
@@ -59,3 +59,6 @@ def City_delete(request, city_name):
     city = get_object_or_404(City, name=city_name)
     city.delete()
     return redirect('WeatherApp:city_weather')
+
+
+
